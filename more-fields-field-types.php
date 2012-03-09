@@ -35,31 +35,10 @@
 		**	WYSIWYG
 		*/	
 		$f['wysiwyg']['label'] = __('WYSIWYG', 'more-plugins');
+        $f['wysiwyg']['html_before'] = "<label for='%key%'>%title%</label>\n";
+		$f['wysiwyg']['html_item'] = "%editor%";
+		$f['wysiwyg']['html_after'] = "\n %caption% \n";
 
-		$f['wysiwyg']['html_before'] = '
-		   <script type="text/javascript">
-			   /* <![CDATA[ */
-			   jQuery(document).ready( function () { 
-				   jQuery("#%key%").addClass("mceEditor");
-				   		if ( typeof( tinyMCE ) == "object" && typeof( tinyMCE.execCommand ) == "function" ) {
-							tinyMCE.settings.advanced += ",|,add_image,add_video,add_audio,add_media";	
-				   			tinyMCE.execCommand("mceAddControl", false, "%key%");
-				   }
-			   }); 
-			   /* ]]> */
-		   </script>
-			   <div style="width: 100%" class="mf_field_wysiwyg">
-			   <label class="mf_wysiwig" for="%key%">%title%</label>
-		   <textarea class="%class% %key%" name="%key%" id="%key%">%value%' . "\n";
-		   
-	//	$f['wysiwyg']['html_before'] << wp_editor($post->post_content, 'content', array('dfw' => true) );
-// ed.settings.theme_advanced_buttons1 += ',|,add_image,add_video,add_audio,add_media';		   
-//		$f['wysiwyg']['html_before'] = '<textarea class="%class% %key%" name="%key%" id="%key%">' . "\n";
-		add_action('mf_the_editor', 'the_editor', 10, 2);
-		// function the_editor($content, $id = 'content', $prev_id = 'title', $media_buttons = true, $tab_index = 2) {
-//		$f['wysiwyg']['actions'] = array('mf_the_editor' => array( '%value%', '%key%'));
-		$f['wysiwyg']['html_item'] = "";
-		$f['wysiwyg']['html_after'] = "</textarea></div>\n %caption%";
 		$f['wysiwyg']['comment'] = __('Creates text box that allows formatted input. WYSIWYG - What you see is what you get', 'more-plugins');
 
 		/*
@@ -136,21 +115,6 @@
 			</div>
 			
 			%caption%";
-		
-		/*
-		$f['file-list-thumb']['html_item'] = "		
-			<input type='hidden' id='%key%' name='%key%' value='%value%'>
-			<label class='mf_filelist' for='%key%'>%title%</label>
-<!--
-			<div class='mf_file_list_show_old' id='mf_file_list_show_%key%'>
-				<input type='button' class='button file_list_update' id='mf_file_list_edit_button_%key%' value='Edit' />
-			</div>
--->
-			<div class='mf_file_list_edit' id='mf_file_list_edit_%key%'>
-				<a href='#' class='mf_file_list_update file_list_update' id='mf_file_list_edit_button_%key%'>Update list</a> <select class='%class% mf_file_list_select' type='checkbox' id='%key%_temp' name='%key%' %selected%><option value=''>Reload to list files</option></select> <img  id='mf_file_list_thumb_%key%' class='mf_file_list_thumb' src='%file_list_thumb%' alt='' /> 
-			</div>
-			";
-        */
 		$f['file-list-thumb']['html_selected'] = 'checked="checked"';
 		$f['file-list-thumb']['values'] = true;
 		$f['file-list-thumb']['comment'] = __('Select files from posts media library with added thumbnail', 'more-plugins');

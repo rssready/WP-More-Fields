@@ -308,8 +308,7 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_8 {
                 
                 foreach($values as $id => $value) {
                     $values[$id]['item_thumbnail'] = wp_get_attachment_image( $id ); 
-                }
-                
+                } 
 			} else {
                 $parts = explode(',', $field['values']);
     
@@ -410,8 +409,13 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_8 {
             $value_raw = $value_stored;
         }
         
-        
-        if( is_array($value_raw) ) {
+        if($field['field_type'] == 'wysiwyg') {
+                ob_start();
+                the_editor( $value_raw, sanitize_title($field['key']) );
+                $editor = ob_get_clean();
+                error_log( "Editor: $editor" );
+                $html = str_replace("%editor%", $editor, $html);
+        } else if( is_array($value_raw) ) {
             // Do some magic
             foreach( $value_raw as $key => $value ) {
                 $html = str_replace("%$key%", $value, $html);
