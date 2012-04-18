@@ -77,8 +77,6 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_8 {
 			<?php echo $css; ?>
 		</style>
 		<?php
-		wp_tiny_mce( false ); // true gives you a stripped down version of the editor
-
 	}
 	/*
 	**
