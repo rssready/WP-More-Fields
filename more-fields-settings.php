@@ -22,16 +22,22 @@ if (!$more_fields_settings->navigation || $more_fields_settings->navigation == '
 
 	$fields = $more_fields_settings->data;
 
+
+    
 	$ancestor_keys = array();
 	$more_fields_settings->table_header($titles);
 	$nbr = 0;
+	
+    // Output the "More Fields boxes" area.
+    // TODO: Move this out of the table.
+    $title = __('More Fields boxes', 'more-plugins');
+    $caption = __('Boxes created with More Fields or overridden from elsewhere.', 'more-plugins');
+    echo '<caption><h3>' . $title . '</h3><p>' . $caption . '</p></caption>';
+	
 	foreach ((array) $fields['_plugin'] as $key => $item) {
 		if ($a = $item['ancestor_key']) $ancestor_keys[] = $a;
-		$title = __('More Fields boxes', 'more-plugins');
 		$keys = '_plugin,' . $key;
 		$label = stripslashes($item['label']);
-		$caption = __('Boxes created with More Fields or overridden from elsewhere.', 'more-plugins');
-		echo '<caption><h3>' . $title . '</h3><p>' . $caption . '</p></caption>';
 		$edit_link = array('navigation' => 'box', 'action' => 'edit', 'keys' => $keys);
 		$delete_link = array('action' => 'delete', 'action_keys' => $keys, 'class' => 'more-common-delete');
 		$export_link = array('navigation' => 'export', 'keys' => $keys);
