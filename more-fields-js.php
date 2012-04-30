@@ -4,7 +4,9 @@
 jQuery().ready(function(){
 
     // Set up click events
-    jQuery('.mf_file_thumb_area img, .mf_file_thumb_area span.no-value').on('click', function(){
+    // Error fix: changed .on to .click so that it doesn't 
+    // cause an error in older versions of jQuery.
+    jQuery('.mf_file_thumb_area img, .mf_file_thumb_area span.no-value').click(function(){
         var clicked_obj = jQuery(this);
         clicked_obj.parent().find('input').trigger('click');
     });
