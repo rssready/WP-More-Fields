@@ -235,13 +235,24 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_8 {
 				if (array_key_exists($post_key, (array) $_POST) || array_key_exists($key, (array) $meta_data)) {
 					$value = stripslashes($_POST[$post_key]);
 					$stored_value = (array_key_exists($key, $meta_data)) ? $meta_data[$key][0] : '';
-						if ($value || (!$value && get_post_meta($post_id, $key, true))) {
-						if ($value != get_post_meta($post_id, $key, true))  {
-							if ($field['field_type'] == 'wysiwyg') $value = wpautop($value);
-							if (!add_post_meta($post_id, $key, $value, true)) 
-								update_post_meta($post_id, $key, $value);	
-						}
-					}
+					
+                    if ($value || get_post_meta($post_id, $key, true) ) {
+                        // File lists may send no value, but not intentionally
+                        $not_file_list = ($field['field_type'] != 'file-list-thumb');
+                        $values_dont_match = ($value != get_post_meta($post_id, $key, true));
+                        
+                        if ($values_dont_match)  {
+                            if ($field['field_type'] == 'wysiwyg') { 
+                                $value = wpautop($value);
+                            }
+                            
+                            if($value || $not_file_list) {
+                                if (!add_post_meta($post_id, $key, $value, true)) {
+                                    update_post_meta($post_id, $key, $value);
+                                }
+                            }
+                        }
+                    }
 				}
 			}	
 		}

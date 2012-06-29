@@ -104,7 +104,7 @@
             <div class='mf_file_list_thumb' id='mf_file_list_thumb_%key%'>
                 <label class='mf_filelist' for='%key%'>%title%</label>
                 <div>
-                    <div class='mf_file_thumb_area'>\n<span class='no-value'>No Image</span>\n<input type='radio' name='%key%' value='' %selected% /></div>
+                    <div class='mf_file_thumb_area'>\n<span class='no-value'>No Image</span>\n<input type='radio' name='%key%' value='-1' %selected% /></div>
         ";
 		
 		$f['file-list-thumb']['html_item'] = "<div class='mf_file_thumb_area'>\n%item_thumbnail%\n<input type='radio' name='%key%' value='%ID%' %selected% /></div>";
