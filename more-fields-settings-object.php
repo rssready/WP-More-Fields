@@ -418,7 +418,7 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_8 {
             $value_raw = $value_stored;
         }
         
-        if($field['field_type'] == 'wysiwyg') {
+        if($field['field_type'] == 'wysiwyg' && strpos($html, "%editor%") !== false) {
                 $editor_name = sanitize_title($field['key']);
                 // Remove anything that's not a lowercase letter.
                 $editor_id = preg_replace( '/[^a-z]/', '', strtolower( $editor_name ));
