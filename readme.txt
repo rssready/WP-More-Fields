@@ -48,6 +48,12 @@ If you're upgrading from More Fields 1.x you need to make a couple of steps to c
 
 More details: [Upgrading More Fields](http://labs.dagensskiva.com/2010/07/22/upgrading-more-fields/)
 
+== Working with More Fields in templates ==
+
+Assuming you've created a field called "Full Name" with the key "full_name", you can use get_post_meta (http://codex.wordpress.org/Function_Reference/get_post_meta) to retrieve your values:
+
+<?php echo get_post_meta(get_the_ID(), 'full_name', 1 ); ?>
+
 == Changelog ==
 
 = 2.1 =

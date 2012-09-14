@@ -81,18 +81,19 @@
 		$f['file-list']['html_before'] = "
             <div class='mf_file_list' id='mf_file_list_%key%'>
                 <label class='mf_filelist' for='%key%'>%title%</label>
-                <select class='%class% mf_file_list_select' type='checkbox' id='%key%_temp' name='%key%'>
-                    <option value=''>None</option>
+                <div class='mf_button_area'>
+                    <input type='button' class='mf_file_select_button' value='Select A File' />
+                    <a class='mf_thumb_clear_button' >Clear Selection</a>
+                </div>
         ";
 		
-		$f['file-list']['html_item'] = "<option value='%ID%' %selected%>%post_title% (%post_mime_type%)</option>";
+		$f['file-list']['html_item'] = "<div class='mf_attachment_text'>Attachment ID: <span class='mf_attachment_value'>%value%</span></div><input type='hidden' name='%key%' value='%value%' class='mf_file_select_field' />";
 		
-		$f['file-list']['html_after'] = "</select>
-            <input type='button' class='button file_list_update' id='mf_file_list_update_button_%key%' value='Update list' /> 
+		$f['file-list']['html_after'] = "
 			</div>
 			
 			%caption%";
-		$f['file-list']['html_selected'] = 'selected="selected"';
+		$f['file-list']['html_selected'] = '';
 		$f['file-list']['comment'] = __('Select files from posts media library.', 'more-plugins');
 				
 		/*
@@ -103,14 +104,21 @@
 		$f['file-list-thumb']['html_before'] = "
             <div class='mf_file_list_thumb' id='mf_file_list_thumb_%key%'>
                 <label class='mf_filelist' for='%key%'>%title%</label>
+                <div class='mf_button_area'>
+                    <input type='button' class='mf_thumb_select_button' value='Select an Image' />
+                    <a class='mf_thumb_clear_button' >Clear Selection</a>
+                </div>
                 <div>
-                    <div class='mf_file_thumb_area'>\n<span class='no-value'>No Image</span>\n<input type='radio' name='%key%' value='-1' %selected% /></div>
         ";
 		
-		$f['file-list-thumb']['html_item'] = "<div class='mf_file_thumb_area'>\n%item_thumbnail%\n<input type='radio' name='%key%' value='%ID%' %selected% /></div>";
+		$f['file-list-thumb']['html_item'] = "
+		          <div class='mf_file_thumb_area'>
+		              <img src='%file_list_thumb%' />
+		          </div>
+		          <div class='mf_attachment_text'>Attachment ID: <span class='mf_attachment_value'>%value%</div>
+		          <input type='hidden' name='%key%' value='%value%' class='mf_file_select_field' />";
 		
 		$f['file-list-thumb']['html_after'] = "
-                    <div style='clear:both;'></div>
                 </div>
 			</div>
 			
@@ -301,27 +309,22 @@
 			background: #fff;
 		}
 		
-		.mf_file_thumb_area {
-            float: left;
-            margin-right: 10px;
-            text-align: center;
-            width: 55px;
+		.mf_button_area {
+		  margin-bottom: 5px;
 		}
 		
-            .mf_file_thumb_area span.no-value {
-                display: block;
-                height: 55px;
-                width: 55px;
-            }
+		.mf_attachment_text {
+		  margin: 5px 0;
+		}
+		
+		.mf_file_thumb_area {
+            text-align: center;
+		}
             
             .mf_file_thumb_area img {
                 display: block;
-                max-height: 55px;
-                max-width: 55px;
-            }
-            
-            .mf_file_thumb_area input {
-                margin-top: 5px;
+                max-height: 150px;
+                max-width: 150px;
             }
 
 		';

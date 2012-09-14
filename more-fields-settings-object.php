@@ -311,13 +311,18 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_8 {
 			$values = array();
 			if($field['field_type'] == 'file-list') {
                 // Load attachements
-                $values = get_children( array( 'post_parent' => $post->ID, 'post_type' => 'attachment', 'orderby' => 'menu_order ASC, ID', 'order' => 'DESC'), ARRAY_A );
+                //$values = get_children( array( 'post_parent' => $post->ID, 'post_type' => 'attachment', 'orderby' => 'menu_order ASC, ID', 'order' => 'DESC'), ARRAY_A );
+                $values[] = '';
+                
             } else if($field['field_type'] == 'file-list-thumb') {
+                /*
                 $values = get_children( array( 'post_parent' => $post->ID, 'post_type' => 'attachment', 'post_mime_type' => 'image',  'orderby' => 'menu_order ASC, ID', 'order' => 'DESC'), ARRAY_A );
                 
                 foreach($values as $id => $value) {
                     $values[$id]['item_thumbnail'] = wp_get_attachment_image( $id ); 
-                } 
+                }
+                */
+                $values[] = '';
 			} else {
                 $parts = explode(',', $field['values']);
     

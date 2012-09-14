@@ -26,8 +26,18 @@ class more_fields_object extends more_plugins_object_sputnik_8 {
 		// Do the field types
 		//add_filter('more_fields_write_css', 'more_fields_write_css');
 		//add_filter('more_fields_write_js', 'more_fields_write_js');
+		
+		// For the file fields, we need to override the send_to_editor
+		add_filter('media_send_to_editor', array($this, 'mf_media_send_to_editor'), 12, 3);
 
 	}
+	
+	function mf_media_send_to_editor($html, $attachment_id, $attachment) {
+        $html = '<a mf-attachement-id="'.$attachment_id.'"' . substr($html, 2);
+        
+        return $html;
+    }
+	
 	function set_default_data() {
 		global $wp_meta_boxes;
 		$this->data_default = $wp_meta_boxes;		
