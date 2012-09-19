@@ -16,7 +16,7 @@ jQuery().ready(function(){
     jQuery('.mf_thumb_clear_button').click(function(){
         var field_area = jQuery(this).parent().parent();
         
-        field_area.find('.mf_file_select_field').val('');
+        field_area.find('.mf_file_select_field').val('-1');
         field_area.find('.mf_attachment_text .mf_attachment_value').text('None');
         
         // Hide the preview area

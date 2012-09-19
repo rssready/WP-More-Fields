@@ -56,6 +56,10 @@ Assuming you've created a field called "Full Name" with the key "full_name", you
 
 == Changelog ==
 
+= 2.1.1 =
+* Fixed bug: "Clear Selection" didn't remove the selected image upon updating post
+* general cleanup of more-fields-settings-object.php - uniform spacing
+
 = 2.1 =
 * Compatibility with WordPress 3.2
 * Sputnik v8 - WP_DEBUG fixes
