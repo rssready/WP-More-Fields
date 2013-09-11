@@ -33,7 +33,11 @@ class more_fields_object extends more_plugins_object_sputnik_8 {
 	}
 	
 	function mf_media_send_to_editor($html, $attachment_id, $attachment) {
-        $html = '<a mf-attachement-id="'.$attachment_id.'"' . substr($html, 2);
+	    // We need to include the attachment ID for the MF image type to work.
+	    // If people are inserting an unlinked image, then just ignore.
+	    if(substr($html, 0, 2) == "<a") {
+            $html = '<a mf-attachement-id="'.$attachment_id.'"' . substr($html, 2);
+        }
         
         return $html;
     }
