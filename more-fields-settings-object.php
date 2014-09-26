@@ -449,8 +449,10 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_8 {
     
     if($field['field_type'] == 'wysiwyg' && strpos($html, "%editor%") !== false) {
       $editor_name = sanitize_title($field['key']);
-      // Remove anything that's not a lowercase letter.
-      $editor_id = preg_replace( '/[^a-z]/', '', strtolower( $editor_name ));
+      // Turn editor_name into a valid html id.
+      $editor_id = strtolower( $editor_name );
+      $editor_id = preg_replace('/\-/', '_', $editor_id);
+      $editor_id = preg_replace( '/[^a-z0-9_]/', '', $editor_id);
       ob_start();
       wp_editor( $value_raw,  "mce" . $editor_id, array( 'textarea_name' => $editor_name ) );
       $editor = ob_get_clean();
